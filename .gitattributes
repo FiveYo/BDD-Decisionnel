@@ -42,4 +42,4 @@
 #*.svg text
 *.eps binary
 
-*.vsdx
+*.vsdx binary
