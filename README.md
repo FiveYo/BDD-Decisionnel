@@ -43,7 +43,10 @@ Les grands du BI (Inmon, Kimball) définissent un entrepôt de données par ses 
 ### Hypercubisme selon Picasso
 
 Un hypercube est un cube comportant plusieurs dimensions et permettant l'extraction d'une base de données d'informations afin de les organiser sous forme de tableaux. Un hypercube OLAP est donc l'intermédiaire entre une base de données et un utilisateur.
-
+Différents types:
+* **M-OLAP** : L'hypercube M-OLAP est un cube qui permet de pré-calculer les données.
+* **R-OLAP** : Il est utilisé dans le cadre d'une exploitation d'une base de données relationnel. Cet hypercube utilise des requêtes SQL (Structured Query Language) pour exécuter les demandes de l’utilisateur.
+* **H-OLAP** : L'hypercube H-OLAP est un mélange des deux précédents, il est censé gommer leurs méfaits et conserver leurs atouts. Les données agrégées sont stockées sous formes multidimensionnelles, alors que les autres sont stockées dans des structures relationnelles.
 
 ###  Dimension en étoile
 
