@@ -1,0 +1,62 @@
+<Schema name="New Schema2">
+  <Cube name="Cube_Population" visible="true" cache="true" enabled="true">
+    <Table name="pops">
+    </Table>
+    <Dimension type="StandardDimension" visible="true" foreignKey="FK_ZIPCODE" highCardinality="false" name="Location">
+      <Hierarchy name="Economique" visible="true" hasAll="true" primaryKey="ZIPCODE">
+        <Table name="areaclas">
+        </Table>
+        <Level name="Distirict" visible="true" table="areaclas" column="ZIPCODE" nameColumn="ZIPCODE" type="String" internalType="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Cluster" visible="true" table="areaclas" column="CLUSTERNAM" nameColumn="CLUSTERNAM" type="String" internalType="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Group" visible="true" table="areaclas" column="GROUPNAME" nameColumn="GROUPNAME" type="String" internalType="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Family" visible="true" table="areaclas" column="FAMILYNAME" nameColumn="FAMILYNAME" type="String" internalType="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+      <Hierarchy name="Geographique" visible="true" hasAll="true" primaryKey="ZIPCODE" primaryKeyTable="areaclas">
+        <Join leftKey="ZIPCODE" rightAlias="county" rightKey="FK_COUNTY">
+          <Table name="areaclas">
+          </Table>
+          <Join leftKey="FK_CODEREGION" rightKey="NAME">
+            <Table name="county">
+            </Table>
+            <Table name="region">
+            </Table>
+          </Join>
+        </Join>
+        <Level name="Distirict" visible="true" table="areaclas" column="ZIPCODE" nameColumn="ZIPCODE" type="String" internalType="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="County" visible="true" table="county" column="NAME" nameColumn="NAME" type="String" internalType="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+        <Level name="Region" visible="true" table="region" column="LABELREGION" nameColumn="LABELREGION" type="String" internalType="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="FK_SEXAGE" highCardinality="false" name="Age">
+      <Hierarchy name="Age" visible="true" hasAll="true" primaryKey="SEXAGE">
+        <Table name="sexage">
+        </Table>
+        <Level name="Age" visible="true" table="sexage" column="AGE" nameColumn="AGE" type="String" internalType="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" foreignKey="FK_SEXAGE" highCardinality="false" name="Sexe">
+      <Hierarchy name="Sexe" visible="true" hasAll="true" primaryKey="SEXAGE">
+        <Table name="sexage">
+        </Table>
+        <Level name="Sexe" visible="true" table="sexage" column="SEXE" nameColumn="SEXE" type="String" internalType="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Dimension type="StandardDimension" visible="true" highCardinality="false" name="Annee">
+      <Hierarchy name="Annees" visible="true" hasAll="true">
+        <Level name="Annee" visible="true" column="YEAR" type="String" internalType="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never">
+        </Level>
+      </Hierarchy>
+    </Dimension>
+    <Measure name="Nb_Pop" column="NB" datatype="Integer" aggregator="sum" visible="true">
+    </Measure>
+  </Cube>
+</Schema>

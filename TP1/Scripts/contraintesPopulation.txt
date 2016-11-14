@@ -1,0 +1,18 @@
+--
+-- Création des contraintes de références pour les clés étrangères dans le schéma de l'entrepôt
+-- todo : personnaliser le nom du schéma XXX
+
+
+USE `XXX`;
+
+ALTER TABLE areaclas 
+ADD CONSTRAINT FOREIGN KEY (`FK_COUNTY`) REFERENCES `county` (`COUNTY`);
+
+ALTER TABLE county 
+ADD CONSTRAINT FOREIGN KEY (`FK_CODEREGION`) REFERENCES `region` (`CODEREGION`);
+
+ALTER TABLE pops 
+ADD CONSTRAINT FOREIGN KEY (`FK_ZIPCODE`) REFERENCES `areaclas` (`ZIPCODE`);
+
+ALTER TABLE pops 
+ADD CONSTRAINT FOREIGN KEY (`FK_SEXAGE`) REFERENCES `sexage` (`SEXAGE`);
