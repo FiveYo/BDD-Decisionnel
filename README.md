@@ -40,6 +40,11 @@ Les grands du BI (Inmon, Kimball) définissent un entrepôt de données par ses 
 * Intégrées : tous les systèmes stockant des informations dans l'entrepôt sont des sources potentielles de données. Feuilles de calculs, systèmes de production, feuilles de travail, etc. L'entrepôt intégrera ces éléments pour former une vision unique de l'activité de 		l'entreprise.
 * Différents niveaux de granularité : l'entrepôt doit être capable de livrer des informations aussi détaillées (ligne de facture) que générales (chiffre d'affaire pour une année), et ce de la façon la plus transparente possible.
 
+### Hypercubisme selon Picasso
+
+Un hypercube est un cube comportant plusieurs dimensions et permettant l'extraction d'une base de données d'informations afin de les organiser sous forme de tableaux. Un hypercube OLAP est donc l'intermédiaire entre une base de données et un utilisateur.
+
+
 ###  Dimension en étoile
 
 Utilisée lorsque on a **1 seule table** qu'on découpe pour avoir plusieurs relations, ce qui donne évidemment une étoie1
