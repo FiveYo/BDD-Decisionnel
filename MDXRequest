@@ -1,0 +1,61 @@
+with member [Measures].[Store Sales Last Period] as '([Measures].[Store Sales], Time.PrevMember)'
+select
+	{[Measures].[Store Sales Last Period]} on columns,
+	{TopCount([Product].[Product Department].members,5, [Measures].[Store Sales Last Period])} on rows
+from Sales
+where ([Time].[1998])
+
+
+select
+{ [Temps].[Tous les Temps]} on rows,
+{  [Measures].[Nb Café]   } on columns
+from BoissonChaude
+
+select
+{ [Temps].[Année ].members } on rows,
+{  [Measures].[Nb Café], [Measures].[Nb Chocolat]  } on columns
+from BoissonChaude
+
+select
+{Crossjoin( [Temps].[Année ].members, [Lieux].[Libelle Batiment].members)} on columns,
+{  [Measures].[Nb Café]} on rows
+from BoissonChaude
+
+select
+{Crossjoin( [Temps].[Année ].members, [Lieux].[Libelle Batiment].members)} on columns,
+{  [Measures].[Nb Chocolat] } on rows
+from BoissonChaude
+
+select
+{Crossjoin( [Temps].[Année ].members, [Lieux].[Tous les Lieux].[Blaise Pascal].Children ) } on columns,
+{  [Measures].[Nb Café] } on rows
+from BoissonChaude
+
+select
+{ [Temps].[Année ].members} on columns,
+{  [Measures].[Nb Café] } on rows
+from BoissonChaude
+where [Lieux].[Tous les Lieux].[Blaise Pascal].[salle à café IF]
+
+select
+{Crossjoin([Temps].[Année ].members, {  [Lieux].[Libelle Batiment].members ,[Lieux].[Libelle Machine].members }  ) } on columns,
+{  [Measures].[Nb Café] } on rows
+from BoissonChaude
+
+select
+{Crossjoin([Temps].[Année ].members, {  [Lieux].[Libelle Batiment].members ,[Lieux].[Libelle Machine].members }  ) } on columns,
+{  [Measures].[Nb Café] } on rows
+from BoissonChaude
+
+select
+{Crossjoin([Temps].[Tous les Temps].[2015].Children,   [Lieux].[Libelle Batiment].members  ) } on columns,
+{  [Measures].[Nb Café] } on rows
+from BoissonChaude
+
+with member [Measures].[diff] as
+' ( [Measures].[Nb Café], [Lieux] .CurrentMember, [Temps].CurrentMember) - ([Measures].[Nb Café], [Lieux] .CurrentMember, [Temps].CurrentMember.PrevMember)'
+select
+{  [Measures].[Nb Café],   [Measures].[diff]} on columns,
+{ [Temps].members  } on rows
+from BoissonChaude
+
